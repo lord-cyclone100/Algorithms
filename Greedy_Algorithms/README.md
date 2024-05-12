@@ -52,11 +52,13 @@ void Prim(G,w,r){
 
 **Working:**
 The following graph is used to demonstrate Prim's Algorithm.
-
+<p align="center">
 <div style="display: flex; margin: 0 auto;">
     <img src="../pics/prim1.png" height=300 width=400>
     <img src="../pics/primadj.png" height=300 width=400>
 </div>
+</p>
+
 
 ## Advantages of Greedy Algorithms
 
