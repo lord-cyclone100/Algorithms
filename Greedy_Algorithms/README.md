@@ -208,6 +208,93 @@ The final MST obtained is shown with minimum cost 17
 **Time Complexity:**
 O(|E|log E + |E|log V)
 
+
+
+## Dijkstra's Algorithm
+Dijkstra's Algorithm is a greedy approach to find the single source shortest path between a source vertex and all other vertices(destination) for a given graph.
+
+**Initialization:**
+Two sets namely distance and sptSet are taken each with length = no of vertices of the graph. Each of the elements of the sets are initialized as follows:
+distance[] with 999 and parent[] with false.
+
+**Procedure:**
+All vertices are assigned a distance and parent value. Any of the vertex of the graph is selected as the starting vertex and its distance value is assigned 0. Then check for the unvisited adjacent vertices and if their key values are greater than the sum of the weight of the edge joining it and the chosen vertex and weight of the distance of the vertex, then update its distance value equivalent to the sum of the  weight of the edge joining it and the chosen vertex and weight of the distance of the vertex. Continue this procedure until all the vertices are visited.
+
+Finally, the distane set would contain the shortest path distances from the source node to the destination nodes.
+
+**Algorithm:**
+```c
+Algorithm Dijkstra(G,w,s){
+    for each vertex u ∈ G(V){
+        dist[u] := ∞; // Initialization
+        pred[u] := nil;
+        sptSet[u] := false;
+    }
+    dist[s] := 0; // Start from root
+    //Make a min priority Queue Q;
+    // Make a min priority Queue
+    while Q is not empty{
+        // Until all vertices in MST
+        u := extractM in(Q); // Delete a minimum valued vertex from heap
+        sptSet[u] := true;
+        for each v adjacent from u{
+            if sptSet[v] = false and dist[u] + cost[u, v] < dist[v]{
+                decreaseKey(v, dist[u] + cost[u][v]); // Update heap accordingly
+                pred[v] := u;
+            }
+        }
+    }
+}
+```
+
+**Working:**
+The following graph is used to demonstrate Prim's Algorithm.
+
+<div style="display: flex; margin: 0 auto;">
+    <img src="../pics/dj1.png" height=300 width=400>
+    <img src="../pics/djmat.png" height=300 width=400>
+</div>
+
+Here we select A as the starting vertex. Make its key 0. It's adjacents are B, F and E. Since they are ∞, update the cost values with respective edge weights and parent values as A. Mark vertex A as visited.
+
+<p align="center">
+  <img src="../pics/dj2.png" height=300 width=400>
+</p>
+
+Now minimum key is 7 hence vertex B is selected and it's adjacent unvisited vertices' distances are updated as per the sum discussed above.
+
+<p align="center">
+  <img src="../pics/dj3.png" height=300 width=400>
+</p>
+
+Now minimum key is 9 hence vertex F is selected and it's adjacent unvisited vertices' distances are updated as per the sum discussed above.
+
+<p align="center">
+  <img src="../pics/dj4.png" height=300 width=400>
+</p>
+
+Now minimum key is 11 hence vertex E is selected and it's adjacent unvisited vertices' distances are updated as per the sum discussed above.
+
+<p align="center">
+  <img src="../pics/dj5.png" height=300 width=400>
+</p>
+
+Now minimum key is 15 hence vertex C is selected and it's adjacent unvisited vertices' distances are updated as per the sum discussed above.
+
+<p align="center">
+  <img src="../pics/dj6.png" height=300 width=400>
+</p>
+
+Only one key is remaining. Update it value and now the distance array contains the shortest paths from A to all the other vertices.
+
+<div style="display: flex; margin: 0 auto;">
+    <img src="../pics/dj7.png" height=300 width=400>
+    <img src="../pics/djop.png" height=300 width=400>
+</div>
+
+**Time Complexity:**
+O(|V|log V + |E|log V)
+
 ## Advantages of Greedy Algorithms
 
 - They are easy to understand and implement.
