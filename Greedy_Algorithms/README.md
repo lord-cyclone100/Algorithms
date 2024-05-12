@@ -96,6 +96,99 @@ Now as 5 > 2, key of F won't be updated and the previous value will remain.
 
 The final MST obtained is shown with minimum cost 17
 
+<div style="display: flex; margin: 0 auto;">
+    <img src="../pics/primfinal.png" height=300 width=400>
+    <img src="../pics/primop.png" height=300 width=400>
+</div>
+
+**Time Complexity:**
+O(|V|log V + |E|log V)
+
+
+
+## Kruskal's Algorithm
+Kruskal's Algorithm is a greedy approach to find the minimal spanning tree for a given graph.
+
+**Initialization:**
+This algorithm utilizes the operations of disjoint set data structure namely makeSet(), findSet() and unionSet(). The main aim of using these functions is to detect the presence of cycles. Initially, every vertex in the graph is made an independent set with only one node by using the makeSet() function.
+
+**Procedure:**
+The edges are sorted in non decreasing order of their weights
+
+Finally, the cost set would contain the minimum path weights and adding it's elements would give the minimum cost of the spanning tree and the mstSet contains the parent value of each vertex which finaaly gives the edge sets of the MST.
+
+**Algorithm:**
+```c
+void Prim(G,w,r){
+    for each vertex u ∈ G(V ){
+        key[u] := ∞; // Initialization
+        parent[u] := nil;
+        mstSet[u] := false;
+    }
+    key[r] := 0; // Start from root
+    //Make a min priority Queue Q; // min-heap is used 
+    //for min priority Queue
+    while Q is not empty{
+        // Until all vertices in MST
+        u := ExtractM in(Q); // Delete a minimum valued 
+        //vertex from heap
+        mstSet[u] := true;
+        for each v adjacent from u{
+            if mstSet[v] = false and w[u, v] < key[v]{
+                DecreaseKey(v, w[u][v]); // Update heap
+                parent[v] := u;
+            }
+        }
+    }
+}
+```
+
+**Working:**
+The following graph is used to demonstrate Prim's Algorithm.
+
+<div style="display: flex; margin: 0 auto;">
+    <img src="../pics/prim1.png" height=300 width=400>
+    <img src="../pics/primadj.png" height=300 width=400>
+</div>
+
+Here we select A as the starting vertex. Make its key 0. It's adjacents are B and D. Since they are ∞, update the cost values with respective edge weights and parent values as A. Mark vertex A as visited
+
+<p align="center">
+  <img src="../pics/prim2.png" height=300 width=400>
+</p>
+
+Now minimum key is 7 hence vertex B is selected and same process is applied.
+
+<p align="center">
+  <img src="../pics/prim3.png" height=300 width=400>
+</p>
+
+Now minimum key is 3 hence vertex D is selected and same process is applied.
+
+<p align="center">
+  <img src="../pics/prim4.png" height=300 width=400>
+</p>
+
+Now minimum key is 3 hence vertex E is selected and same process is applied.
+
+<p align="center">
+  <img src="../pics/prim5.png" height=300 width=400>
+</p>
+
+Now minimum key is 2 hence vertex C or vertex F anyone can be selected. Let,s select C and apply the same process.
+
+<p align="center">
+  <img src="../pics/prim6.png" height=300 width=400>
+</p>
+
+Now as 5 > 2, key of F won't be updated and the previous value will remain.
+
+<p align="center">
+  <img src="../pics/prim7.png" height=300 width=400>
+</p>
+
+The final MST obtained is shown with minimum cost 17
+
 <p align="center">
   <img src="../pics/primfinal.png" height=300 width=400>
 </p>
