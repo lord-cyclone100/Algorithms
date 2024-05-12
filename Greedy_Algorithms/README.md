@@ -58,13 +58,50 @@ The following graph is used to demonstrate Prim's Algorithm.
     <img src="../pics/primadj.png" height=300 width=400>
 </div>
 
-Here we select A as the starting vertex. Make its cost 0. It's adjacents are B and D. Since they are ∞, update the cost values with respective edge weights and parent values as A. Mark vertex A as visited
+Here we select A as the starting vertex. Make its key 0. It's adjacents are B and D. Since they are ∞, update the cost values with respective edge weights and parent values as A. Mark vertex A as visited
 
 <p align="center">
   <img src="../pics/prim2.png" height=300 width=400>
 </p>
 
+Now minimum key is 7 hence vertex B is selected and same process is applied.
 
+<p align="center">
+  <img src="../pics/prim3.png" height=300 width=400>
+</p>
+
+Now minimum key is 3 hence vertex D is selected and same process is applied.
+
+<p align="center">
+  <img src="../pics/prim4.png" height=300 width=400>
+</p>
+
+Now minimum key is 3 hence vertex E is selected and same process is applied.
+
+<p align="center">
+  <img src="../pics/prim5.png" height=300 width=400>
+</p>
+
+Now minimum key is 2 hence vertex C or vertex F anyone can be selected. Let,s select C and apply the same process.
+
+<p align="center">
+  <img src="../pics/prim6.png" height=300 width=400>
+</p>
+
+Now as 5 > 2, key of F won't be updated and the previous value will remain.
+
+<p align="center">
+  <img src="../pics/prim7.png" height=300 width=400>
+</p>
+
+The final MST obtained is shown with minimum cost 17
+
+<p align="center">
+  <img src="../pics/primfinal.png" height=300 width=400>
+</p>
+
+**Time Complexity:**
+O(|V|log V + |E|log V)
 
 ## Advantages of Greedy Algorithms
 
