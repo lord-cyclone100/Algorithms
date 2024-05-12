@@ -52,12 +52,18 @@ void Prim(G,w,r){
 
 **Working:**
 The following graph is used to demonstrate Prim's Algorithm.
-<p align="center">
+
 <div style="display: flex; margin: 0 auto;">
     <img src="../pics/prim1.png" height=300 width=400>
     <img src="../pics/primadj.png" height=300 width=400>
 </div>
+
+Here we select A as the starting vertex. Make its cost 0. It's adjacents are B and D. Since they are ∞, update the cost values with respective edge weights and parent values as A. Mark vertex A as visited
+
+<p align="center">
+  <img src="../pics/prim2.png" height=300 width=400>
 </p>
+
 
 
 ## Advantages of Greedy Algorithms
