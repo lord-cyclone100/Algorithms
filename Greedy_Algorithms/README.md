@@ -12,7 +12,10 @@ Greedy algorithms follow a problem-solving heuristic of making the locally optim
 4. **Prim's Algorithm**: A greedy algorithm that finds a minimum spanning tree for a weighted undirected graph. It starts from a random vertex and greedily grows the tree by adding the minimum weight edge from the tree to the graph.
 5. **Job Scheduling Problem**: Jobs are scheduled based on their deadlines and durations to maximize profit or minimize penalty.
 
-## Prim's Algorithm
+<h2 align="left"><img src="https://i.gifer.com/QFLl.gif" align="center"
+                width="28" /> &nbsp; Prim's Algorithm</h3>
+                <br>
+<p align="left"> 
 Prim's Algorithm is a greedy approach to find the minimal spanning tree for a given graph.
 
 **Initialization:**
@@ -106,7 +109,10 @@ O(|V|log V + |E|log V)
 
 
 
-## Kruskal's Algorithm
+<h2 align="left"><img src="https://i.gifer.com/QFLl.gif" align="center"
+                width="28" /> &nbsp; Kruskal's Algorithm</h3>
+                <br>
+<p align="left"> 
 Kruskal's Algorithm is a greedy approach to find the minimal spanning tree for a given graph.
 
 **Initialization:**
@@ -210,7 +216,10 @@ O(|E|log E + |E|log V)
 
 
 
-## Dijkstra's Algorithm
+<h2 align="left"><img src="https://i.gifer.com/QFLl.gif" align="center"
+                width="28" /> &nbsp; Dijkstra's Algorithm</h3>
+                <br>
+<p align="left"> 
 Dijkstra's Algorithm is a greedy approach to find the single source shortest path between a source vertex and all other vertices(destination) for a given graph.
 
 **Initialization:**
