@@ -22,36 +22,7 @@ void printSolution(int n){
 	}
 }
 
-//bool place(int k,int i){
-//	int j;
-//	for(j=1;j<=k-1;j++){
-//		if(x[j]==i || abs(j-k)==abs(x[j]-i)){
-//			return false;
-//		}
-//	}
-//	return true;
-//}
-
-
-
-//void nQueen(int k,int n){
-//	int i;
-//	for(i=1;i<=n;i++){
-//		if(place(k,i)){
-//			x[k]=i;
-//			if(k==n){
-//				printSolution(n);
-//				printf("\n");
-//			}
-//			else{
-//				nQueen(k+1,n);
-//			}
-//		}
-//	}
-//}
-
-
-bool place(int k,int i,int* x){
+bool place(int k,int i){
 	int j;
 	for(j=1;j<=k-1;j++){
 		if(x[j]==i || abs(j-k)==abs(x[j]-i)){
@@ -62,16 +33,12 @@ bool place(int k,int i,int* x){
 }
 
 void nQueen(int k,int n){
-	int i,j;
-	int* x;
-	x = (int *)malloc(n*sizeof(int));
+	int i;
 	for(i=1;i<=n;i++){
-		if(place(k,i,x)){
+		if(place(k,i)){
 			x[k]=i;
 			if(k==n){
-				for(j=0;j<=n;j++){
-					printf("%d ",x[j]);
-				}
+				printSolution(n);
 				printf("\n");
 			}
 			else{
