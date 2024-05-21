@@ -1,78 +1,74 @@
 #include<stdio.h>
 
-struct items{
-	int profit[100];
-	int deadline[100];
-	int jobNumber[100];
+struct job{
+	int id;
+	int profit;
+	int deadline;
 };
 
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
+struct job jb[100];
+int n,track[100];
 
-void sort(int arr[],int arr2[],int arr3[],int n){
+void sort(){
 	int i,j,flag;
-	int temp;
-	for (i = 0;i<n-1;i++){
-		flag = 0;
-		for (j = 0;j<n-i-1;j++){
-			if (arr[j] < arr[j+1]){
-				swap(&arr[j],&arr[j+1]);
-				swap(&arr2[j],&arr2[j+1]);
-				swap(&arr3[j],&arr3[j+1]);
-				flag = 1;
+	for(i=0;i<n-1;i++){
+		flag=0;
+		for(j=0;j<n-i-1;j++){
+			if(jb[j].profit<jb[j+1].profit){
+				struct job temp=jb[j];
+				jb[j]=jb[j+1];
+				jb[j+1]=temp;
+				flag=1;
 			}
 		}
-		if (flag == 0){
+		if(flag==0){
 			break;
 		}
-	}	
+	}
 }
 
-int maximum(int arr[],int n){
-	int max=arr[0],i;
-	for(i=1;i<n;i++){
-		if(arr[i]>max){
-			max=arr[i];
+int max(){
+	int i,maximum=0;
+	for(i=0;i<n;i++){
+		if(jb[i].deadline>maximum){
+			maximum=jb[i].deadline;
 		}
 	}
-	return max;
+	return maximum;
 }
 
-void jobSequence(struct items it,int n){
-	sort(it.profit,it.deadline,it.jobNumber,n);
-	int gc[100]={0},m,i,j,profit=0;
-	m = maximum(it.deadline,n);
-	printf("Selected jobs:\n");
+void jobSequence(){
+	int i,j,maxprofit=0;
+	for(i=0;i<n;i++){
+		track[i]=0;
+	}
+	sort();
+	int m=max();
+	int gchart[m+1];
 	for(i=0;i<n;i++){
 		for(j=m;j>0;j--){
-			if(it.deadline[i]>=j && gc[j]==0){
-				profit += it.profit[i];
-				gc[j]=1;
-				printf("job no %d\n",it.jobNumber[i]);
+			if(track[j]==0 && j<=jb[i].deadline){
+				gchart[j]=jb[i].id;
+				maxprofit+=jb[i].profit;
+				track[j]=1;
 				break;
 			}
 		}
 	}
-	printf("\nMaximum profit: %d",profit);
+	for(i=1;i<=m;i++){
+		printf("Job id %d selected\n",gchart[i]);
+	}
+	printf("Max Profit:%d",maxprofit);
 }
 
 int main(){
-	struct items it;
-	int n,i;
-	printf("Enter the total no of jobs:");
+	int i;
+	printf("Enter the number of jobs:");
 	scanf("%d",&n);
-	printf("Enter the profits:");
 	for(i=0;i<n;i++){
-		scanf("%d",&it.profit[i]);
-		it.jobNumber[i]=i+1;
+		printf("Enter job id profit and deadline:");
+		scanf("%d %d %d",&jb[i].id,&jb[i].profit,&jb[i].deadline);
 	}
-	printf("Enter the deadlines:");
-	for(i=0;i<n;i++){
-		scanf("%d",&it.deadline[i]);
-	}
-	jobSequence(it,n);
+	jobSequence();
 	return 0;
 }
