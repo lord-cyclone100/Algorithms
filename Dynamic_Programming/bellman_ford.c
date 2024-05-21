@@ -1,54 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int distance[100];
+int n,graph[10][10],dist[100],pred[100];
 
-void initialize(int n,int start){
-	int i;
-	for(i=0;i<n;i++){
-		distance[i]=999;
-	}
-	distance[start]=0;
-}
-
-void relax(int graph[10][10],int i,int j){
-	if(graph[i][j]!=0 && distance[i]+graph[i][j]<distance[j]){
-		distance[j]=distance[i]+graph[i][j];
-	}
-}
-
-int bellmanFord(int graph[10][10],int n,int start){
-	int i,j,k;
-	initialize(n,start);
-	for(k=1;k<n;k++){
-		for(i=0;i<n;i++){
-			for(j=0;j<n;j++){
-				relax(graph,i,j);
-			}
-		}
-	}
-	for(i=0;i<n;i++){
-		for(j=0;j<n;j++){
-			if(distance[i]+graph[i][j]<distance[j]){
-				return 0;
-			}
-		}
-	}
-	return 1;
-}
-
-void printResult(n){
-	int i;
-	printf("Source\t\tShortest distance\n");
-	for(i=0;i<n;i++){
-		printf("%d\t\t%d\n",i,distance[i]);
-	}
-}
-
-int main(){
-	int graph[10][10],i,j,n,start,b;
-	FILE *fp;
-	fp = fopen("ford.txt","r");
+void readGraph(){
+	int i,j;
+	FILE* fp;
+	fp=fopen("ford.txt","r");
 	if(fp==NULL){
 		printf("Error");
 		exit(1);
@@ -60,21 +18,81 @@ int main(){
 		}
 	}
 	fclose(fp);
+}
+
+void printGraph(){
+	int i,j;
 	for(i=0;i<n;i++){
 		for(j=0;j<n;j++){
-			printf("%d ",graph[i][j]);
+			printf("%d   ",graph[i][j]);
 		}
 		printf("\n");
 	}
-	printf("Enter starting vertex:");
-	scanf("%d",&start);
-	
-	b=bellmanFord(graph,n,start);
-	if(b ==1){
-		printf("Negative weight cycle detected");
+}
+
+void initialize(){
+	int i;
+	for(i=0;i<n;i++){
+		dist[i]=999;
+		pred[i]=-1;
+	}
+}
+
+void relax(int x,int y){
+	if(dist[x]+graph[x][y]<dist[y]){
+		dist[y]=dist[x]+graph[x][y];
+		pred[y]=x;
+	}
+}
+
+int bellmanFord(int start){
+	int i,j,k;
+	initialize();
+	dist[start]=0;
+	for(k=0;k<n-1;k++){
+		for(i=0;i<n;i++){
+			for(j=0;j<n;j++){
+				if(graph[i][j]!=999){
+					relax(i,j);
+				}
+			}
+		}
+	}
+	int flag=0;
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			if(dist[i]+graph[i][j]<dist[j]){
+				flag=1;
+			}
+		}
+	}
+	if(flag==0){
+		return 1;
 	}
 	else{
-		printResult(n);
+		return 0;
 	}
+}
+
+void printResult(){
+	int i,w;
+	for(i=1;i<n;i++){
+		printf("S to %c -> %d\n",'A'+(i-1),dist[i]);
+	}
+}
+
+int main(){
+	int i;
+	readGraph();
+	printGraph();
+	int b = bellmanFord(0);
+	printf("\n");
+	if(b==1){
+		printResult();
+	}
+	else{
+		printf("Graph has negative weight cycle");
+	}
+	
 	return 0;
 }
