@@ -69,16 +69,21 @@ void Dijkstra(int start){
 	}
 }
 
+void printPath(w){
+	if(w==pred[w]){
+		printf("S  ");
+	}
+	else{
+		printPath(pred[w]);
+		printf("%c  ",'A'+w);
+	}
+}
+
 void printShortestPath(){
 	int i,w;
 	for(i=1;i<n;i++){
 		printf("S to %c:%d\n",'A'+i,dist[i]);
-		w=i;
-		while(w!=0){
-			printf("%c<-",'A'+w);
-			w=pred[w];
-		}
-		printf("S");
+		printPath(i);
 		printf("\n\n");
 	}
 }
