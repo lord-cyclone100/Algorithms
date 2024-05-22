@@ -6,7 +6,7 @@ int n,graph[10][10],dist[100],pred[100];
 void readGraph(){
 	int i,j;
 	FILE* fp;
-	fp=fopen("ford.txt","r");
+	fp=fopen("bellman.txt","r");
 	if(fp==NULL){
 		printf("Error");
 		exit(1);
@@ -74,10 +74,22 @@ int bellmanFord(int start){
 	}
 }
 
+void printPath(int w){
+	if(pred[w]==-1){
+		printf("S  ");
+	}
+	else{
+		printPath(pred[w]);
+		printf("%c  ",'@'+w);
+	}
+}
+
 void printResult(){
-	int i,w;
+	int i;
 	for(i=1;i<n;i++){
 		printf("S to %c -> %d\n",'A'+(i-1),dist[i]);
+		printPath(i);
+		printf("\n\n");
 	}
 }
 
@@ -93,6 +105,5 @@ int main(){
 	else{
 		printf("Graph has negative weight cycle");
 	}
-	
 	return 0;
 }
