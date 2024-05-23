@@ -21,17 +21,17 @@ void maxmin_with_DAC(int a[],int i,int j,int *max,int *min){
 		maxmin_with_DAC(a,i,mid,&max1,&min1);
 		maxmin_with_DAC(a,mid+1,j,&max2,&min2);
 		if(max1 < max2){
-            *max = max2;
-        }
-        else{
-            *max = max1;
-        }
-        if(min1 > min2){
-            *min = min2;
-        }
-        else{
-            *min = min1;
-        }
+            		*max = max2;
+        	}
+	        else{
+	            *max = max1;
+	        }
+	        if(min1 > min2){
+	            *min = min2;
+	        }
+	        else{
+	            *min = min1;
+	        }
 	}
 }
 
